@@ -1,5 +1,6 @@
 package io.archflow.infrastructure.filesystem;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -8,22 +9,18 @@ import java.nio.file.Path;
 public class PathValidator {
 
     public boolean exists(Path path) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Files.exists(path);
     }
 
     public boolean isReadable(Path path) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Files.isReadable(path);
     }
 
     public boolean isDirectory(Path path) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Files.isDirectory(path);
     }
 
     public boolean destinationAlreadyExists(Path path) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Files.exists(path);
     }
 }
