@@ -1,5 +1,32 @@
 # CLAUDE.md
 
+## Memory System
+
+This project uses a persistent memory directory at `memory/` to preserve context across sessions and agents.
+
+### Files
+
+| File | Purpose |
+|------|---------|
+| `memory/progress.md` | What is done, in progress, and next — **read this first** |
+| `memory/architecture.md` | Package map, execution flow, system binary dependencies |
+| `memory/decisions.md` | Technical and architectural decisions with rationale |
+| `memory/constraints.md` | What must NOT be implemented and why |
+| `memory/preferences.md` | Language, coding style, commit flow, collaboration rules |
+
+### Rules for every agent
+
+1. **Start every session** by reading `memory/progress.md` and `memory/architecture.md`.
+2. **Before every commit**, update `memory/progress.md`:
+   - move completed items to the "Concluído" table
+   - update the "Próximos passos" list
+   - update the test count
+3. Never skip the memory update — it is what allows the next agent to resume without context loss.
+4. If you make an architectural decision, add it to `memory/decisions.md`.
+5. If you discover a new constraint, add it to `memory/constraints.md`.
+
+---
+
 ## Project Overview
 
 This project is called **archflow**.
