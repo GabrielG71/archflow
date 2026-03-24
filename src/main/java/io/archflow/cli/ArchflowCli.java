@@ -1,11 +1,23 @@
 package io.archflow.cli;
 
+import io.archflow.application.usecase.CompressUseCase;
+import io.archflow.application.usecase.DetectFormatUseCase;
+import io.archflow.application.usecase.ExtractUseCase;
+import io.archflow.domain.handler.ArchiveHandler;
+import io.archflow.infrastructure.archive.SevenZipHandler;
+import io.archflow.infrastructure.archive.TarGzHandler;
+import io.archflow.infrastructure.archive.XzHandler;
+import io.archflow.infrastructure.archive.ZipHandler;
+import io.archflow.infrastructure.filesystem.PathValidator;
+import io.archflow.infrastructure.process.CommandExecutor;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
+import java.util.List;
+
 /**
  * Entrypoint of the archflow CLI application.
- * Picocli handles argument parsing and delegates to the interactive flow.
+ * Picocli handles argument parsing and wires up dependencies for the interactive flow.
  */
 @Command(
         name = "archflow",
@@ -22,7 +34,20 @@ public class ArchflowCli implements Runnable {
 
     @Override
     public void run() {
-        // TODO: start interactive flow via ArchiveFlowRunner
-        System.out.println("archflow iniciando...");
+        CommandExecutor executor = new CommandExecutor();
+
+        List<ArchiveHandler> handlers = List.of(
+                new ZipHandler(executor),
+                new TarGzHandler(executor),
+                new SevenZipHandler(executor),
+                new XzHandler(executor)
+        );
+
+        new ArchiveFlowRunner(
+                new PathValidator(),
+                new DetectFormatUseCase(),
+                new CompressUseCase(handlers),
+                new ExtractUseCase(handlers)
+        ).run();
     }
 }
