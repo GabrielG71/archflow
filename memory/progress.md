@@ -15,7 +15,7 @@ Estado atual do desenvolvimento. Deve ser atualizado antes de cada commit.
 | Models do domínio | `domain/model/*` | — | `47ad854` |
 | Interface `ArchiveHandler` | `domain/handler/ArchiveHandler.java` | — | `f52eaab` |
 | Exceptions do domínio | `domain/exception/*` | — | `c7105c8` |
-| `CommandExecutor` (stub) | `infrastructure/process/*` | — | `32a173e` |
+| `CommandExecutor` | `infrastructure/process/CommandExecutor.java` | ✅ 7 testes | — |
 | `PathValidator` | `infrastructure/filesystem/PathValidator.java` | ✅ 10 testes | `8d73ae1` + `934ef74` |
 | `DetectFormatUseCase` | `application/usecase/DetectFormatUseCase.java` | ✅ 10 testes | `11b69ab` + `120ce29` |
 | Handlers (stubs) | `infrastructure/archive/*` | — | `60147ce` |
@@ -35,7 +35,7 @@ Nada em andamento no momento.
 
 ## Próximos passos (ordem obrigatória)
 
-1. **`CommandExecutor`** — implementar ProcessBuilder wrapper com captura de stdout/stderr e exit code
+1. ~~**`CommandExecutor`** — implementar ProcessBuilder wrapper com captura de stdout/stderr e exit code~~
 2. **`ZipHandler`** — implementar compress (`zip -r`) e extract (`unzip -d`)
 3. **`TarGzHandler`** — implementar compress (`tar -czf`) e extract (`tar -xzf`)
 4. **`SevenZipHandler`** — implementar compress e extract via `7z`
@@ -48,6 +48,6 @@ Nada em andamento no momento.
 
 ## Contagem
 
-- ✅ Concluídos: 2 módulos com lógica real (`PathValidator`, `DetectFormatUseCase`)
-- ⬜ Pendentes com lógica: 8 módulos
-- Total de testes passando: **20/20**
+- ✅ Concluídos: 3 módulos com lógica real (`PathValidator`, `DetectFormatUseCase`, `CommandExecutor`)
+- ⬜ Pendentes com lógica: 7 módulos
+- Total de testes passando: **27/27**
