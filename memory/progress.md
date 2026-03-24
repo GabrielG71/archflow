@@ -18,10 +18,14 @@ Estado atual do desenvolvimento. Deve ser atualizado antes de cada commit.
 | `CommandExecutor` | `infrastructure/process/CommandExecutor.java` | ✅ 7 testes | — |
 | `PathValidator` | `infrastructure/filesystem/PathValidator.java` | ✅ 10 testes | `8d73ae1` + `934ef74` |
 | `DetectFormatUseCase` | `application/usecase/DetectFormatUseCase.java` | ✅ 10 testes | `11b69ab` + `120ce29` |
-| Handlers (stubs) | `infrastructure/archive/*` | — | `60147ce` |
-| `CompressUseCase` (stub) | `application/usecase/CompressUseCase.java` | — | `c92696e` |
-| `ExtractUseCase` (stub) | `application/usecase/ExtractUseCase.java` | — | `c92696e` |
-| CLI entrypoint (stub) | `cli/ArchflowCli.java` + `cli/ArchiveFlowRunner.java` | — | `71dd644` |
+| `ZipHandler` | `infrastructure/archive/ZipHandler.java` | ✅ 5 testes | `ee7fa9f` |
+| `TarGzHandler` | `infrastructure/archive/TarGzHandler.java` | ✅ 5 testes | `ee7fa9f` |
+| `SevenZipHandler` | `infrastructure/archive/SevenZipHandler.java` | ✅ 5 testes | `ee7fa9f` |
+| `XzHandler` | `infrastructure/archive/XzHandler.java` | ✅ 5 testes | `ee7fa9f` |
+| `CompressUseCase` | `application/usecase/CompressUseCase.java` | ✅ 4 testes | `4ba61fb` |
+| `ExtractUseCase` | `application/usecase/ExtractUseCase.java` | ✅ 4 testes | `4ba61fb` |
+| `ArchiveFlowRunner` | `cli/ArchiveFlowRunner.java` | — | `157e974` |
+| `ArchflowCli` (conectado) | `cli/ArchflowCli.java` | — | `157e974` |
 | Documentação | `README.md` + `LICENSE` | — | `c0da0dc` |
 | Diretrizes do projeto | `CLAUDE.md` | — | `c8761f2` |
 
@@ -29,25 +33,20 @@ Estado atual do desenvolvimento. Deve ser atualizado antes de cada commit.
 
 ## Em andamento
 
-Nada em andamento no momento.
+Nada em andamento no momento — MVP completo e funcional.
 
 ---
 
-## Próximos passos (ordem obrigatória)
+## Próximos passos (melhorias pós-MVP)
 
-1. ~~**`CommandExecutor`** — implementar ProcessBuilder wrapper com captura de stdout/stderr e exit code~~
-2. **`ZipHandler`** — implementar compress (`zip -r`) e extract (`unzip -d`)
-3. **`TarGzHandler`** — implementar compress (`tar -czf`) e extract (`tar -xzf`)
-4. **`SevenZipHandler`** — implementar compress e extract via `7z`
-5. **`XzHandler`** — implementar apenas extract via `xz -dk`
-6. **`CompressUseCase`** — orquestrar: validar path → detectar handler → executar → retornar resultado
-7. **`ExtractUseCase`** — orquestrar: validar path → detectar handler → executar → retornar resultado
-8. **`ArchiveFlowRunner`** — fluxo interativo completo: prompts, overwrite check, resultado
+1. Testes de integração end-to-end (comprime + extrai e valida conteúdo)
+2. Testes do `ArchiveFlowRunner` com Scanner simulado
+3. Build do fat JAR e teste manual via `java -jar`
+4. Publicação de release no GitHub
 
 ---
 
 ## Contagem
 
-- ✅ Concluídos: 3 módulos com lógica real (`PathValidator`, `DetectFormatUseCase`, `CommandExecutor`)
-- ⬜ Pendentes com lógica: 7 módulos
-- Total de testes passando: **27/27**
+- ✅ MVP completo: todos os módulos implementados
+- Total de testes passando: **55/55**
